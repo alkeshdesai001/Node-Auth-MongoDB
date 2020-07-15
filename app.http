@@ -1,0 +1,27 @@
+###Login Route
+POST http://localhost:5000/api/v1/auth/login
+content-type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": 123456
+}
+
+###Signup Route
+POST http://localhost:5000/api/v1/auth/signup
+content-type: application/json
+
+{
+    "name": "admin",
+    "email": "admin@gmail.com",
+    "password": 123456,
+    "role":"user"
+}
+
+###Protected Route
+GET http://localhost:5000/api/v1/protected
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVlZTFkM2UxNDg0NzQyYzVjY2U3ZjJmIiwibmFtZSI6ImFkbWluIn0sImlhdCI6MTU5NDc5MzgyOCwiZXhwIjoxNTk0NzkzODg4fQ.Eyw9b8y0FdGl-A64kgRZkjKc3qqI_CBtjd787L1emQQ
+
+###Admin Route
+GET http://localhost:5000/api/v1/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVlZTFkM2UxNDg0NzQyYzVjY2U3ZjJmIiwibmFtZSI6ImFkbWluIn0sImlhdCI6MTU5NDc5MzgyOCwiZXhwIjoxNTk0NzkzODg4fQ.Eyw9b8y0FdGl-A64kgRZkjKc3qqI_CBtjd787L1emQQ

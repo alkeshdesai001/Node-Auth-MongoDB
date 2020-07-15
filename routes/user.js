@@ -1,14 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const { signUp, login } = require('../controllers/user');
-const {
-  signUpValidator,
-  loginValidator,
-} = require('../controllers/userValidator');
-const result = require('../middleware/validationResult');
+import { signUp, login } from '../controllers/user';
+import { signUpValidator, loginValidator } from '../controllers/userValidator';
+import result from '../middleware/validationResult';
 
 router.post('/auth/signup', signUpValidator, result, signUp);
 router.post('/auth/login', loginValidator, result, login);
 
-module.exports = router;
+export default router;

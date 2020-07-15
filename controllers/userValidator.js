@@ -1,6 +1,6 @@
 const { check } = require('express-validator');
 
-exports.signUpValidator = [
+export const signUpValidator = [
   check('email', 'Please enter valid email id').isEmail().normalizeEmail(),
   check('name', 'Username is required').not().isEmpty(),
   check('password', 'Password must be minimum 6 character long').isLength({
@@ -15,7 +15,7 @@ exports.signUpValidator = [
   }),
 ];
 
-exports.loginValidator = [
+export const loginValidator = [
   check('email', 'Please enter valid email id').isEmail().normalizeEmail(),
   check('password', 'Password must be minimum 6 character long').isLength({
     min: 6,

@@ -1,15 +1,18 @@
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
+import express from 'express';
+import path from 'path';
+import mongoose from 'mongoose';
 
-const cors = require('cors');
-const mongoSanitize = require('express-mongo-sanitize');
-const helmet = require('helmet');
-const xss = require('xss-clean');
-const rateLimit = require('express-rate-limit');
-const hpp = require('hpp');
-const dotenv = require('dotenv');
+import cors from 'cors';
+import mongoSanitize from 'express-mongo-sanitize';
+import helmet from 'helmet';
+import xss from 'xss-clean';
+import rateLimit from 'express-rate-limit';
+import hpp from 'hpp';
+import dotenv from 'dotenv';
 dotenv.config({ path: './config/config.env' });
+
+import protectedRoute from './routes/protected';
+import userRoute from './routes/user';
 
 const app = express();
 
@@ -27,8 +30,8 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-app.use('/api/v1', require('./routes/protected'));
-app.use('/api/v1', require('./routes/user'));
+app.use('/api/v1', protectedRoute);
+app.use('/api/v1', userRoute);
 
 const PORT = process.env.PORT || 5000;
 
@@ -41,11 +44,7 @@ mongoose.connect(
     useUnifiedTopology: true,
   },
   () => {
-    app.listen(PORT, () =>
-      console.log(
-        `Server is running in ${process.env.NODE_ENV} mode on Port ${PORT}`
-      )
-    );
+    app.listen(PORT, () => console.log(`Server is running Port ${PORT}`));
   }
 );
 

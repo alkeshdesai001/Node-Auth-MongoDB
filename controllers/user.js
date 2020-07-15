@@ -1,6 +1,6 @@
-const User = require('../models/User');
+import User from '../models/User';
 
-exports.signUp = async (req, res) => {
+export const signUp = async (req, res) => {
   const { name, email, password, role } = req.body;
 
   try {
@@ -33,7 +33,7 @@ exports.signUp = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
