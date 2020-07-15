@@ -33,7 +33,7 @@ app.use('/api/v1', require('./routes/user'));
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(
-  process.env.mongoURI,
+  process.env.MONGO_URI,
   {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -41,10 +41,15 @@ mongoose.connect(
     useUnifiedTopology: true,
   },
   () => {
-    app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));
+    app.listen(PORT, () =>
+      console.log(
+        `Server is running in ${process.env.NODE_ENV} mode on Port ${PORT}`
+      )
+    );
   }
 );
 
 process.on('unhandledRejection', (err, promise) => {
   console.log(`Error: ${err.message}`);
+  process.exit(1);
 });
